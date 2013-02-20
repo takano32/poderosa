@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>8.0.50727</ProductVersion>
@@ -25,6 +26,23 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UnitTest|AnyCPU' ">
     <OutputPath>bin\UnitTest\</OutputPath>
@@ -171,11 +189,6 @@
       <DependentUpon>SerialLoginDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\SerialPort\SerialPortIconList.resx">
-      <Link>SerialPort\SerialPortIconList.resx</Link>
-      <DependentUpon>SerialPortIconList.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="..\SerialPort\strings.resx">
       <Link>SerialPort\strings.resx</Link>
       <SubType>Designer</SubType>
@@ -196,19 +209,9 @@
       <Link>TerminalEmulator\strings_ja.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\TerminalEmulator\TerminalEmulatorIconList.resx">
-      <Link>TerminalEmulator\TerminalEmulatorIconList.resx</Link>
-      <DependentUpon>TerminalEmulatorIconList.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="..\TerminalSession\CygwinLoginDialog.resx">
       <Link>TerminalSession\CygwinLoginDialog.resx</Link>
       <DependentUpon>CygwinLoginDialog.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\TerminalSession\IconList.resx">
-      <Link>TerminalSession\IconList.resx</Link>
-      <DependentUpon>IconList.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="..\TerminalSession\LoginDialogBase.resx">
@@ -617,9 +620,6 @@
     <Compile Include="..\Protocols\ProtocolsPlugin.cs">
       <Link>Protocols\ProtocolsPlugin.cs</Link>
     </Compile>
-    <Compile Include="..\Protocols\SimpleStringEncypt.cs">
-      <Link>Protocols\SimpleStringEncypt.cs</Link>
-    </Compile>
     <Compile Include="..\Protocols\socks.cs">
       <Link>Protocols\socks.cs</Link>
     </Compile>
@@ -659,10 +659,6 @@
     </Compile>
     <Compile Include="..\SerialPort\SerialPluginEx.cs">
       <Link>SerialPort\SerialPluginEx.cs</Link>
-    </Compile>
-    <Compile Include="..\SerialPort\SerialPortIconList.cs">
-      <Link>SerialPort\SerialPortIconList.cs</Link>
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\SerialPort\SerialPortPlugin.cs">
       <Link>SerialPort\SerialPortPlugin.cs</Link>
@@ -748,10 +744,6 @@
     <Compile Include="..\TerminalEmulator\TerminalEmulatorEx.cs">
       <Link>TerminalEmulator\TerminalEmulatorEx.cs</Link>
     </Compile>
-    <Compile Include="..\TerminalEmulator\TerminalEmulatorIconList.cs">
-      <Link>TerminalEmulator\TerminalEmulatorIconList.cs</Link>
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="..\TerminalEmulator\TerminalEmulatorPlugin.cs">
       <Link>TerminalEmulator\TerminalEmulatorPlugin.cs</Link>
     </Compile>
@@ -801,10 +793,6 @@
     </Compile>
     <Compile Include="..\TerminalSession\CygwinPlugin.cs">
       <Link>TerminalSession\CygwinPlugin.cs</Link>
-    </Compile>
-    <Compile Include="..\TerminalSession\IconList.cs">
-      <Link>TerminalSession\IconList.cs</Link>
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\TerminalSession\LoginDialogBase.cs">
       <Link>TerminalSession\LoginDialogBase.cs</Link>
@@ -949,7 +937,7 @@
     </Compile>
     <Compile Include="..\Usability\FontDialog.cs">
       <Link>Usability\FontDialog.cs</Link>
-      <SubType>Component</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\Usability\GenericOptionPanel.cs">
       <Link>Usability\GenericOptionPanel.cs</Link>
@@ -1057,9 +1045,27 @@
     <Compile Include="..\XZModem\zmodem.cs">
       <Link>XZModem\zmodem.cs</Link>
     </Compile>
+    <Compile Include="Protocols\SimpleStringEncrypt.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Granados", "Granados\Granados.csproj", "{4E6838A6-9255-4673-A322-4522B8C896AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monolithic", "Monolithic\Monolithic.csproj", "{9D114B8B-E62C-4FBF-B281-0227755C8091}"

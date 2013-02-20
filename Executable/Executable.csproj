@@ -74,4 +74,8 @@
   <ItemGroup>
     <Content Include="poderosa.ico" />
   </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

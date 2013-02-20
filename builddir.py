@@ -20,7 +20,7 @@ class BuildDir:
             self._path = "C:/users/" + os.environ['USERNAME'] + "/Dropbox/poderosa"
         else:
             self._path = "binaries/poderosa"
-        print("Putting everything in: " + self._path)
+        print("Putting " + self._buildType + " in: " + self._path + " " + os.getcwd())
             
     def buildFileList(self, pattern):
         for root, dirnames, filenames in os.walk('.'):
@@ -39,14 +39,14 @@ class BuildDir:
         index = filename.rfind('\\')
         if (index == -1):
             index = filename.rfind('/')
-        file = filename[index:]
+        file = filename[index+1:]
         return file
         
     def copyFiles(self, maindir):
         for filename in self._files:
             dir = self.getDir(filename)
             file = self.getFile(filename)
-            if (file.find(dir) != -1):
+            if ((file.find(dir) != -1) and (file.find(self._buildType))):
                 if (dir in (maindir)):
                     fullpath = self._path
                 else:
@@ -62,8 +62,8 @@ class BuildDir:
         maindir = ["Plugin", "Granados"]
         self.copyFiles(maindir)
         self._files = []
-        copyfile("Executable/bin/Debug/Poderosa.exe", self._path + "/Poderosa.exe")
-        copyfile("Executable/bin/Debug/Poderosa.pdb", self._path + "/Poderosa.pdb")
+        copyfile("Executable/bin/" + self._buildType + "/Poderosa.exe", self._path + "/Poderosa.exe")
+        copyfile("Executable/bin/" + self._buildType + "/Poderosa.pdb", self._path + "/Poderosa.pdb")
         
 def main(argv):
     buildType = "Debug"

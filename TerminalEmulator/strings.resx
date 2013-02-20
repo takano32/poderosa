@@ -295,6 +295,9 @@
   <data name="Enum.EncodingType.OEM850">
     <value>oem850</value>
   </data>
+  <data name="Enum.EncodingType.IBM437">
+    <value>ibm437</value>
+  </data>
   <data name="Enum.LogType.None">
     <value>None</value>
   </data>

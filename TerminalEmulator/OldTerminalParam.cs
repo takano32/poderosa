@@ -162,6 +162,12 @@ namespace Poderosa.ConnectionParam {
         /// </summary>
         [EnumValue(Description = "Enum.EncodingType.OEM850")]
         OEM850 = 9,
+        /// <summary>
+        /// <ja>IBM437</ja>
+        /// <en>IBM437</en>
+        /// </summary>
+        [EnumValue(Description = "Enum.EncodingType.IBM437")]
+        IBM437 = 10,
     }
 
     /// <summary>

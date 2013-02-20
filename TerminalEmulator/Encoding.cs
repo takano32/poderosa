@@ -143,6 +143,9 @@ namespace Poderosa.Terminal {
                 case EncodingType.OEM850:
                     p = new OEM850Profile();
                     break;
+                case EncodingType.IBM437:
+                    p = new IBM437Profile();
+                    break;
             }
             return p;
         }
@@ -302,17 +305,41 @@ namespace Poderosa.Terminal {
                 return false;
             }
         }
-        private class OEM850Profile : DirectMapEncodingProfile {
+        private class OEM850Profile : DirectMapEncodingProfile
+        {
             public OEM850Profile()
-                : base(EncodingType.OEM850, Encoding.GetEncoding(850)) {
+                : base(EncodingType.OEM850, Encoding.GetEncoding(850))
+            {
             }
-            protected override int GetCharLength(byte b) {
+            protected override int GetCharLength(byte b)
+            {
                 return 1;
             }
-            protected override bool IsLeadByte(byte b) {
+            protected override bool IsLeadByte(byte b)
+            {
                 return b >= 0x80;
             }
-            protected override bool IsIgnoreableChar(char c) {
+            protected override bool IsIgnoreableChar(char c)
+            {
+                return false;
+            }
+        }
+        private class IBM437Profile : DirectMapEncodingProfile
+        {
+            public IBM437Profile()
+                : base(EncodingType.IBM437, Encoding.GetEncoding("IBM437"))
+            {
+            }
+            protected override int GetCharLength(byte b)
+            {
+                return 1;
+            }
+            protected override bool IsLeadByte(byte b)
+            {
+                return b >= 0x80;
+            }
+            protected override bool IsIgnoreableChar(char c)
+            {
                 return false;
             }
         }

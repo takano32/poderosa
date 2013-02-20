@@ -34,8 +34,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipe", "Pipe\Pipe.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFTP", "SFTP\SFTP.csproj", "{A6D32222-4FA2-4197-9B48-36199FB49321}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ibm437", "Ibm437\Ibm437.csproj", "{1D2BB9E4-0D1B-4C7C-BCF5-301AE0C60DDD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug(UIDesign)|Any CPU = Debug(UIDesign)|Any CPU
@@ -180,14 +178,6 @@ Global
 		{A6D32222-4FA2-4197-9B48-36199FB49321}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A6D32222-4FA2-4197-9B48-36199FB49321}.UnitTest|Any CPU.ActiveCfg = Release|Any CPU
 		{A6D32222-4FA2-4197-9B48-36199FB49321}.UnitTest|Any CPU.Build.0 = Release|Any CPU
-		{1D2BB9E4-0D1B-4C7C-BCF5-301AE0C60DDD}.Debug(UIDesign)|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D2BB9E4-0D1B-4C7C-BCF5-301AE0C60DDD}.Debug(UIDesign)|Any CPU.Build.0 = Debug|Any CPU
-		{1D2BB9E4-0D1B-4C7C-BCF5-301AE0C60DDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D2BB9E4-0D1B-4C7C-BCF5-301AE0C60DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D2BB9E4-0D1B-4C7C-BCF5-301AE0C60DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D2BB9E4-0D1B-4C7C-BCF5-301AE0C60DDD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D2BB9E4-0D1B-4C7C-BCF5-301AE0C60DDD}.UnitTest|Any CPU.ActiveCfg = Release|Any CPU
-		{1D2BB9E4-0D1B-4C7C-BCF5-301AE0C60DDD}.UnitTest|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

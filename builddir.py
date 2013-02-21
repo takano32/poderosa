@@ -46,12 +46,13 @@ class BuildDir:
         for filename in self._files:
             dir = self.getDir(filename)
             file = self.getFile(filename)
-            if ((file.find(dir) != -1) and (file.find(self._buildType))):
+            if ((file.find(dir) != -1) and (filename.find(self._buildType) != -1)):
                 if (dir in (maindir)):
                     fullpath = self._path
                 else:
                     fullpath = self._path + "/" + dir
                 mkdir_p(fullpath)
+                print("File: " + filename + " -> " + fullpath + "/" + file)
                 copyfile(filename, fullpath + "/" + file)
                 
     def run(self):

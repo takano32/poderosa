@@ -660,7 +660,7 @@ namespace Poderosa.Terminal {
             if (ch == ControlCode.LF || ch == ControlCode.VT) { //Vertical Tab‚ÍLF‚Æ“™‚µ‚¢
                 LineFeedRule rule = GetTerminalSettings().LineFeedRule;
                 if (rule == LineFeedRule.Normal || rule == LineFeedRule.LFOnly) {
-                    if (rule == LineFeedRule.LFOnly) //LF‚Ì‚İ‚Ì“®ì‚Å‚ ‚é‚Æ‚«
+                    if (rule == LineFeedRule.Normal) //LF‚Ì‚İ‚Ì“®ì‚Å‚ ‚é‚Æ‚«
                         DoCarriageReturn();
                     DoLineFeed();
                 }

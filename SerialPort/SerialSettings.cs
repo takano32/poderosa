@@ -119,7 +119,7 @@ namespace Poderosa.SerialPort {
         ///   <item><term><ja>ログ</ja><en>Log</en></term><description><ja>取得しない</ja><en>None</en></description></item>　　　　　　　
         ///   <item><term><ja>ローカルエコー</ja><en>Local echo</en></term><description><ja>しない</ja><en>Don't</en></description></item>　　
         ///   <item><term><ja>送信時改行</ja><en>New line</en></term><description>CR</description></item>　　　　
-        ///   <item><term><ja>ボーレート</ja><en>Baud Rate</en></term><description>9600</description></item>
+        ///   <item><term><ja>ボーレート</ja><en>Baud Rate</en></term><description>115200</description></item>
         ///   <item><term><ja>データ</ja><en>Data Bits</en></term><description><ja>8ビット</ja><en>8 bits</en></description></item>
         ///   <item><term><ja>パリティ</ja><en>Parity</en></term><description><ja>なし</ja><en>None</en></description></item>
         ///   <item><term><ja>ストップビット</ja><en>Stop Bits</en></term><description><ja>１ビット</ja><en>1 bit</en></description></item>
@@ -129,7 +129,7 @@ namespace Poderosa.SerialPort {
         /// <en>To open a new connection, pass the SerialTerminalParam object to the <see cref="Poderosa.Macro.ConnectionList.Open"/> method.</en>
         /// </remarks>
         public SerialTerminalSettings() {
-            _baudRate = 9600;
+            _baudRate = 115200;
             _byteSize = 8;
             _parity = Parity.NOPARITY;
             _stopBits = StopBits.ONESTOPBIT;

@@ -535,10 +535,12 @@ namespace Poderosa.SerialPort {
         }
 
         private void InitUI() {
-            int maxport = SerialPortUtil.GetMaxPort();
-            for (int i = 1; i <= maxport; i++) //超頻出なのでとりあえず定数に。Preference化はあとでしてもよい
-                _portBox.Items.Add(String.Format("COM{0}", i));
+            System.Collections.Generic.List<String> validPorts = SerialPortUtil.GetValidPorts();
 
+            for (int i = 0; i < validPorts.Count; i++)
+            {
+                _portBox.Items.Add(validPorts[i].ToString());
+            }
             _logTypeBox.SelectedItem = LogType.None;    // select EnumListItem<T> by T
 
             AdjustUI();
@@ -610,7 +612,7 @@ namespace Poderosa.SerialPort {
                         return false; //動作キャンセル
                 }
 
-                param.Port = _portBox.SelectedIndex + 1;
+                param.Port = Int32.Parse(_portBox.SelectedItem.ToString().Substring(3));
 
                 string autoExecMacroPath = null;
                 if (_autoExecMacroPathBox.Text.Length != 0)

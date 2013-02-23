@@ -646,20 +646,10 @@ namespace Poderosa.SerialPort {
             return ts;
         }
 
-        public static int GetMaxPort() {
-            int max = 1;
-            try {
-                foreach (string t in System.IO.Ports.SerialPort.GetPortNames()) {
-                    if (t.StartsWith("COM")) {
-                        int port = Int32.Parse(t.Substring(3)); //"COM"ïîï™ÇèúÇ≠
-                        max = Math.Max(max, port);
-                    }
-                }
-            }
-            catch (Exception ex) {
-                RuntimeUtil.ReportException(ex);
-            }
-            return max;
+        public static List<String> GetValidPorts()
+        {
+            string[] p = System.IO.Ports.SerialPort.GetPortNames();
+            return new List<String>(p);
         }
     }
 }

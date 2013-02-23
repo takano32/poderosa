@@ -88,6 +88,11 @@ namespace Poderosa.SerialPort {
             IntPtr lpNumberOfBytesTransferred, // bytes transferred
             bool bWait                          // wait option
             );
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool CancelIoEx(
+            IntPtr hFile,
+            IntPtr lpOverlapped
+            );
 
         /// <summary>
         /// 
@@ -172,6 +177,7 @@ namespace Poderosa.SerialPort {
         private ByteDataFragment _dataFragment;
         private ManualResetEvent _writeOverlappedEvent;
         private SerialTerminalSettings _serialSettings;
+        private GCHandle _commEventOverlappedPinned;
 
         public SerialSocket(SerialTerminalConnection parent, IntPtr filehandle, SerialTerminalSettings settings) {
             _parent = parent;
@@ -186,7 +192,13 @@ namespace Poderosa.SerialPort {
             }
         }
         public void Close() {
-            if (_writeOverlappedEvent != null) {
+            if (_writeOverlappedEvent != null) 
+            {
+                if (_commEventOverlappedPinned.IsAllocated)
+                {
+                    Win32Serial.CancelIoEx(_fileHandle, _commEventOverlappedPinned.AddrOfPinnedObject());
+                    _commEventOverlappedPinned.Free();
+                }
                 _writeOverlappedEvent.Close();
                 _writeOverlappedEvent = null;
             }
@@ -223,7 +235,7 @@ namespace Poderosa.SerialPort {
                 NativeOverlapped readOverlapped = new NativeOverlapped();
                 readOverlapped.EventHandle = readOverlappedEvent.SafeWaitHandle.DangerousGetHandle();
 
-                GCHandle commEventOverlappedPinned = GCHandle.Alloc(commEventOverlapped, GCHandleType.Pinned);  // Pin a boxed NativeOverlapped
+                _commEventOverlappedPinned = GCHandle.Alloc(commEventOverlapped, GCHandleType.Pinned);  // Pin a boxed NativeOverlapped
                 GCHandle readOverlappedPinned = GCHandle.Alloc(readOverlapped, GCHandleType.Pinned);    // Pin a boxed NativeOverlapped
                 int commFlags = 0;
                 GCHandle commFlagsPinned = GCHandle.Alloc(commFlags, GCHandleType.Pinned);  // Pin a boxed Int32
@@ -259,12 +271,12 @@ namespace Poderosa.SerialPort {
                         commFlagsPinned.Target = commFlags; // Pin a new boxed Int32
                         transferredLength = 0;
                         transferredLengthPinned.Target = transferredLength; // Pin a new boxed Int32
-                        commEventOverlappedPinned.Target = commEventOverlapped; // Pin a new boxed NativeOverlapped
+                        _commEventOverlappedPinned.Target = commEventOverlapped; // Pin a new boxed NativeOverlapped
 
                         success = Win32Serial.WaitCommEvent(
                                         _fileHandle,
                                         commFlagsPinned.AddrOfPinnedObject(),
-                                        commEventOverlappedPinned.AddrOfPinnedObject());
+                                        _commEventOverlappedPinned.AddrOfPinnedObject());
                         if (!success) {
                             int lastErr = Marshal.GetLastWin32Error();
                             if (lastErr == Win32.ERROR_INVALID_HANDLE)
@@ -274,7 +286,7 @@ namespace Poderosa.SerialPort {
 
                             success = Win32Serial.GetOverlappedResult(
                                             _fileHandle,
-                                            commEventOverlappedPinned.AddrOfPinnedObject(),
+                                            _commEventOverlappedPinned.AddrOfPinnedObject(),
                                             transferredLengthPinned.AddrOfPinnedObject(),
                                             true);
                             if (!success) {
@@ -334,7 +346,6 @@ namespace Poderosa.SerialPort {
                     }
                 }
                 finally {
-                    commEventOverlappedPinned.Free();
                     readOverlappedPinned.Free();
                     commFlagsPinned.Free();
                     readLengthPinned.Free();

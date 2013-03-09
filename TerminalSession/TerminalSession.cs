@@ -135,7 +135,7 @@ namespace Poderosa.Sessions {
             if (window != null) {
                 Debug.Assert(window.AsControl().InvokeRequired);
                 //TerminalSessionはコントロールを保有しないので、ウィンドウで代用する
-                window.AsControl().Invoke(new HostCauseCloseDelagate(HostCauseClose), msg);
+                //window.AsControl().Invoke(new HostCauseCloseDelagate(HostCauseClose), msg);
             }
         }
         private void HostCauseClose(string msg) {
